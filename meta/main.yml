@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Valentin Gostev
+  role_name: autossh
+  description: Roles installs autossh with systemd unit
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - ssh
+    - autossh
+    - systemd
+dependencies: []

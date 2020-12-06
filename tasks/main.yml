@@ -1,0 +1,30 @@
+---
+- name: "{{ autossh_task_prefix }} Install autossh"
+  apt:
+    name: autossh
+    state: present
+
+- name: "{{ autossh_task_prefix }} Create configuration directory"
+  file:
+    state: directory
+    path: "{{ autossh_path_config }}"
+
+- name: "{{ autossh_task_prefix }} Put profile configurations"
+  template:
+    src: "{{ autossh_template_config }}"
+    dest: "{{ autossh_path_config }}/{{ item.name }}.conf"
+  loop: "{{ autossh_profiles }}"
+
+- name: "{{ autossh_task_prefix }} Put systemd unit"
+  template:
+    src: "{{ autossh_template_systemd }}"
+    dest: "{{ autossh_path_systemd }}"
+
+- name: "{{ autossh_task_prefix }} Start systemd units"
+  systemd:
+    name: "autossh@{{ item.name }}"
+    state: "{{ item.systemd_state | default('stopped') }}"
+    enabled: "{{ item.systemd_enabled | default('no') }}"
+    masked: "{{ item.systemd_masked | default('no') }}"
+  loop: "{{ autossh_profiles }}"  
+...

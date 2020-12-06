@@ -1,0 +1,26 @@
+---
+autossh_task_prefix: "=== AUTOSSH ==="
+
+# Path settings
+autossh_path_config: "/etc/autossh"
+autossh_path_systemd: "/etc/systemd/system/autossh@.service"
+autossh_template_config: "autossh.conf.j2"
+autossh_template_systemd: "autossh.systemd.j2"
+
+# AutoSSH options
+autossh_cli_parameters: '-M 0 -N -q'
+
+# Example of configuration
+# autossh_profiles:
+#   - name: test
+#     user: someuser
+#     host: "10.10.10.10"
+#     ssh_key: "/root/.ssh/id_rsa"
+#     systemd_state: started
+#     systemd_enabled: yes
+#     systemd_masked: no
+#     forwards_local:
+#       - "127.0.0.1:8080:10.20.30.40:8080"
+#     forwards_remote:
+#       - "10.20.30.40:8000:127.0.0.1:8000"
+...
