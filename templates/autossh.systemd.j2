@@ -3,6 +3,7 @@ Description=Generic AutoSSH tunnel for %I
 After=network-online.target
 
 [Service]
+User={{ autossh_user }}
 Environment="AUTOSSH_GATETIME=0"
 EnvironmentFile={{ autossh_path_config }}/%I.conf
 ExecStart=/usr/bin/autossh $AUTOSSH_PROFILE_OPTIONS $AUTOSSH_PROFILE_CONNECTION $AUTOSSH_PROFILE_FORWARDS_LOCAL $AUTOSSH_PROFILE_FORWARDS_REMOTE
