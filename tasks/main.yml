@@ -24,6 +24,7 @@
   systemd:
     name: "autossh@{{ item.name }}"
     state: "{{ item.systemd_state | default('stopped') }}"
+    daemon_reload: "{{ item.systemd_reload | default('yes') }}"
     enabled: "{{ item.systemd_enabled | default('no') }}"
     masked: "{{ item.systemd_masked | default('no') }}"
   loop: "{{ autossh_profiles }}"  
