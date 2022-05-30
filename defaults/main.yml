@@ -1,6 +1,8 @@
 ---
 autossh_task_prefix: "=== AUTOSSH ==="
 
+autossh_user: root
+
 # Path settings
 autossh_path_config: "/etc/autossh"
 autossh_path_systemd: "/etc/systemd/system/autossh@.service"

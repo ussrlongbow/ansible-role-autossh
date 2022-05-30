@@ -1,0 +1,13 @@
+{%- set profile=item -%}
+AUTOSSH_PROFILE_CONNECTION='-l {{ profile.user }} {{ profile.host }} -p {{ profile.port | default(22) }} {% if profile.ssh_key is defined%} -i {{ profile.ssh_key }} {% endif %}'
+{% if profile.forwards_local is defined %}
+AUTOSSH_PROFILE_FORWARDS_LOCAL='{% if profile.forwards_local | length > 0 %}-L {% endif %}{{ profile.forwards_local | join(' -L ') }}'
+{% else %}
+AUTOSSH_PROFILE_FORWARDS_LOCAL=
+{% endif %}
+{% if profile.forwards_remote is defined %}
+AUTOSSH_PROFILE_FORWARDS_REMOTE='{% if profile.forwards_remote | length > 0 %}-R {% endif %}{{ profile.forwards_remote | join(' -L ') }}'
+{% else %}
+AUTOSSH_PROFILE_FORWARDS_REMOTE=
+{% endif %}
+AUTOSSH_PROFILE_OPTIONS='{{ autossh_cli_parameters }} {{ autossh_cli_sshoptions | default('') }}'
